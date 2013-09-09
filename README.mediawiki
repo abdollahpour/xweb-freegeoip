@@ -2,7 +2,7 @@
 XWeb freegeoip module is very simple XWeb module to get very basic geo information like country code of client in XWeb applications.
 
 == How to use ==
-Simply add is to your xweb.xml file
+Simply add is to your xweb.xml file and then add properties as follow:
 
 <pre>
 <?xml version="1.0" encoding="utf-8"?>
@@ -17,6 +17,10 @@ Simply add is to your xweb.xml file
 			<author>Hamed Abdollahpour</author>
 			<class>ir.xweb.module.GeoIpModule</class>
 		</module>
+		<properties>
+			<property key='fa,ta,af'>fa/index.html</property>
+			<property key='en,default'>en/index.html</property>
+		</properties>
 
 		...
 	</modules>
@@ -24,6 +28,17 @@ Simply add is to your xweb.xml file
 	...
 </xweb>
 </pre>
+
+You can set the module as welcome page in web.xml file to automatically redirect to the proper language.
+<pre>
+...
+<welcome-file-list>
+	<welcome-file>/Index.do</welcome-file>  
+</welcome-file-list>
+...
+</pre>
+
+This module set "language" as cookie in root in website. If you want to empower the user to change the language again, you should set this cookie file with javascript and then redirect page to the root address manually.
 
 You can methods of modules in the other modules. ex:
   getManager().getModule(ir.xweb.module.GeoIpModule.class).getCountryCode(request);
